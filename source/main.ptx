@@ -6,19 +6,18 @@
 
   <book xml:id="methods-and-examples-in-combalg">
     <title>Methods and Examples in Combinatorics and Algebra</title>
-    <subtitle>Some collected notes</subtitle>
 
     <xi:include href="./frontmatter.ptx" />
 
-    <xi:include href="./Combinatorics/combinatorics.ptx" />
     <xi:include href="./Algebra/algebra.ptx"/>
+    <xi:include href="./Combinatorics/combinatorics.ptx" />
 
     <!-- The final chapter contains a wide variety of elements to  -->
     <!-- illustrate what pretext can do, plus links to more help.  -->
     <!-- We recommend keeping this handy, and commenting it out    -->
     <!-- when you show off your own work.                          -->
-    <xi:include href="./ch_pretext-features.ptx" />
+    <!-- <xi:include href="./ch_pretext-features.ptx" /> -->
 
-    <xi:include href="./backmatter.ptx" />
+    <!-- <xi:include href="./backmatter.ptx" /> -->
   </book>
 </pretext>

@@ -15,7 +15,7 @@
 
   <colophon>
     <website>
-      <name><c>Homepage</c></name>
+      <name><c>https://people.math.gatech.edu/~tgunn8</c></name>
       <address>https://people.math.gatech.edu/~tgunn8</address>
     </website>
 
@@ -24,7 +24,7 @@
       <!-- include a license, such as the cc-by-sa license shown below -->
       <!-- so people reading your book know how they can use it.       -->
       <year>2020<ndash/>2021</year>
-      <holder>Me</holder>
+      <holder>Trevor Gunn</holder>
       <!-- <minilicense><image source="../images/by-sa.png" /></minilicense> -->
       <shortlicense>
         <!-- <image source="../images/by-sa.png" width="15%"/>  -->
@@ -40,28 +40,12 @@
 
   </colophon>
 
-  <dedication>
-    <p>
-      For ...
-    </p>
-  </dedication>
-
-  <acknowledgement>
-    <p>
-      I would like to thank...
-    </p>
-
-  </acknowledgement>
-
   <preface xml:id="preface">
-    <!-- You should be a little careful about what you put here -->
-    <!-- Avoid elements that should have a number, for example  -->
     <p>
-      About this book:
+      Some collected notes, problems and examples.
     </p>
 
   </preface>
 
-  <!-- You can have more than one preface. -->
 </frontmatter>
 

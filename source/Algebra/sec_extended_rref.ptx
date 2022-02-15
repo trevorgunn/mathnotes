@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-extended-rref" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>The extended echelon form of a matrix</title>
+  
+  <p>
+    It is a basic algorithm in linear algebra to find the inverse of a matrix <m>A</m>
+    by row reducing the augmented matrix <m>[A \mid I]</m>.
+    However, let us investigate what happens when we do this when <m>A</m> is singular, or even non-square.
+  </p>
+ 
+  <example>
+    <p>
+      Let's start with the <m>2 \times 2</m> case with the matrix
+      <me>\begin{bmatrix} 1 \amp -2 \\ 3 \amp -6 \end{bmatrix}</me>
+    </p>
+
+    <p>
+      If we augment <m>A</m> by the identity matrix and row reduce, we obtain
+      <me>
+        \rref [A \mid I] =
+        \left[\begin{array}{cc|cc}
+          1 \amp -2 \amp 0 \amp  1/3 \\
+          0 \amp  0 \amp 1 \amp -1/3
+        \end{array} \right]
+      </me>
+    </p>
+    <sage>
+      <input>
+        %display latex
+        A = matrix(QQ, [[1, -2], [3, -6]])
+        A.extended_echelon_form(subdivide=True)
+      </input>
+      <output>
+        [   1   -2|   0  1/3]
+        [---------+---------]
+        [   0    0|   1 -1/3]
+      </output>
+    </sage>
+    <p>
+      On the left, we get the row echelon form as expected.
+      On the right, we get the matrix
+      <me>A^{-} = \begin{bmatrix} 0 \amp 1/3 \\ 1 \amp -1/3 \end{bmatrix}</me>
+      for which <m>A^{-}A</m> is in reduced row echelon form.
+    </p>
+    <p>
+      In the Sage cell, there is also a vertical subdivision seperating the row of zeros in <m>\rref(A)</m>.
+      More on that later.
+    </p>
+  </example>
+
+  <definition>
+    <p>
+      Let us call the matrix <m>A^{-}</m> for which <m>A^{-} A = \rref(A)</m>, a
+      <em>left quasi-inverse</em>.
+      These are not unique if <m>A</m> is singular as the next example illustrates.
+    </p>
+  </definition>
+
+  <example>
+    <title>Symbolic row reduction</title>
+    <p>
+      Suppose we take our matrix <m>A</m> as before, but this time we augment with the vector <m>v = (x, y) \in \Q[x,y]</m>.
+
+      In this case, we get
+      <me>
+        \rref [A \mid v] =
+        \left[\begin{array}{cc|c}
+          1 \amp -2 \amp x \\
+          0 \amp  0 \amp -3x + y
+        \end{array} \right]
+      </me>
+    </p>
+    <sage>
+      <input>
+        %display latex
+        R.&lt;x,y&gt; = QQ[]
+        v = vector([x, y])
+        A = matrix(R, [[1, -2], [3, -6]]).augment(v, subdivide=True)
+        A.echelon_form() # note: A.rref() computes the echelon form over Frac(R)
+      </input>
+      <output>
+        [       1       -2|       x]
+        [       0        0|-3*x + y]
+      </output>
+    </sage>
+    <p>
+      The coefficient matrix for the right hand side,
+      <me>
+        \begin{bmatrix}
+           1 \amp 0 \\
+          -3 \amp 1
+        \end{bmatrix}
+      </me>
+      is again a left quasi-inverse. It differs from our previous <m>A^{-}</m> by a couple row operations
+      that do not affect the identity <m>A^-A = \rref A</m>.
+    </p>
+  </example>
+
+</section>

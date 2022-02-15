@@ -5,4 +5,6 @@
   <introduction>
     <p>Examples from algebra</p>
   </introduction>
+
+  <xi:include href="./sec_extended_rref.ptx" />
 </chapter>

@@ -42,9 +42,16 @@
 
   <preface xml:id="preface">
     <p>
-      Some collected notes, problems and examples.
+      Some collected notes, problems and examples in algebra and combinatorics.
+      These notes come from comunicating to various audience: talks I have given,
+      courses I have taught, other conversations. As such, they are a little bit all
+      over the place in terms of level of background.
     </p>
 
+    <p>
+      At minimum, these notes require knowledge of linear algebra, calculus
+      and combinatorics to appreciate fully.
+    </p>
   </preface>
 
 </frontmatter>

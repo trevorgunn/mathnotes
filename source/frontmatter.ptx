@@ -54,5 +54,21 @@
     </p>
   </preface>
 
+  <acknowledgement xml:id="acknowledgement">
+    <p>
+      I would like to thank the professors and teachers at my <em>alma mater</em>,
+      the University of Waterloo for teaching me mathematics and shaping my mathematical interests.
+      There are too many to name, so I will instead give special mention to the two people who supervised
+      my undergraduate research: David Jackson and Matthew Satriano (in different years).
+    </p>
+
+    <p>
+      I would also like to thank the open source community for providing the tools on which these notes
+      are produced. This includes, among others, the developers of <url href="https://pretextbook.org/" visual="PreTeXt" />,
+      <url href="https://www.sagemath.org/" visual="Sagemath" />, <url href="https://www.mathjax.org/" visual="MathJax" />,
+      <url href="https://www.latex-project.org/" visual="LaTeX" /> including AMS-<latex/>.
+    </p>
+  </acknowledgement>
+
 </frontmatter>
 

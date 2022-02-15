@@ -6,17 +6,17 @@
 <frontmatter xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="frontmatter">
   <titlepage>
     <author>
-      <personname>Me</personname>
-      <department>My department</department>
-      <institution>My school</institution>
+      <personname>Trevor Gunn</personname>
+      <department>School of Mathematics</department>
+      <institution>Georgia Institute of Technology</institution>
     </author>
     <date><today/></date>
   </titlepage>
 
   <colophon>
     <website>
-      <name><c>my-website.org</c></name>
-      <address>http://my.website.org</address>
+      <name><c>Homepage</c></name>
+      <address>https://people.math.gatech.edu/~tgunn8</address>
     </website>
 
     <copyright>

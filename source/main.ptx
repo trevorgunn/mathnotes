@@ -12,10 +12,10 @@
 
   <!-- The <book> tags wrap all the content.  Change the @xml:id   -->
   <!-- to some short (non-spaced) description of your book         -->
-  <book xml:id="my-great-book">
+  <book xml:id="methods-and-examples-in-combalg">
     <!-- The book needs a title and can have a subtitle  -->
-    <title>My Great Book</title>
-    <subtitle>An example to be modified</subtitle>
+    <title>Methods and Examples in Combinatorics and Algebra</title>
+    <subtitle>Some collected notes</subtitle>
 
     <!-- Now we include files containing each main devision.       -->
 

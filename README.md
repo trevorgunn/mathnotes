@@ -1,5 +1,7 @@
 # Methods and Examples in Combinatorics and Algebra
 
+Hosted at https://trevorgunn.github.io/
+
 Some notes on combinatorics and algebraic *things* that I've accumulated over the years
 through giving presentations or communicating to my students or just things I've learned which I found interesting.
 

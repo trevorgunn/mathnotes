@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<chapter xml:id="ch-combinatorics" xmlns:xi="http://www.w3.org/2001/XInclude">
+
+  <title>Combinatorics</title>
+
+  <introduction>
+    <p>Examples from combinatorics</p>
+  </introduction>
+
+  <xi:include href="./sec_firstch-intro.ptx" />
+  <xi:include href="./sec_firstch-examples.ptx" />
+
+  <xi:include href="./ex_firstch.ptx"/>
+</chapter>

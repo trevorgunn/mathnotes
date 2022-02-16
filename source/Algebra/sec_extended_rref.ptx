@@ -242,7 +242,7 @@
       Using <xref ref="thm-extended-rref-subspaces"/>, we have
       <me>
         \col A =
-        \sp\left\{
+        \spn\left\{
           \begin{bmatrix} 1 \\ 0 \\ 1/2 \end{bmatrix},
           \begin{bmatrix} 0 \\ 1 \\ 1/2 \end{bmatrix},
         \right\}
@@ -251,7 +251,7 @@
       and
       <me>
         \ker A =
-        \sp\left\{
+        \spn\left\{
           \begin{bmatrix} 1 \\ 0 \\ -1/2 \\ 1/4 \end{bmatrix},
           \begin{bmatrix} 0 \\ 1 \\ 0 \\ -1/2 \end{bmatrix}
         \right\}

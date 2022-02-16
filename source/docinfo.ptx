@@ -23,7 +23,7 @@
 \DeclareMathOperator{\rref}{rref}
 \DeclareMathOperator{\col}{col}
 \DeclareMathOperator{\row}{row}
-\DeclareMathOperator{\sp}{span}
+\DeclareMathOperator{\spn}{span}
 </macros>
 
 <!-- If you put any latex-image elements you can include preambles  -->
@@ -33,6 +33,7 @@
   \usetikzlibrary{positioning,matrix,arrows}
   \usetikzlibrary{shapes,decorations,shadows,fadings,patterns}
   \usetikzlibrary{decorations.markings} 
+  \usetikzlibrary{automata}
 </latex-image-preamble>
 
 <!-- It is possible to rename elements using the tags below -->

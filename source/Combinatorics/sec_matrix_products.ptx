@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-matrix-products" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Matrix products and walks in graphs</title>
+  <introduction>
+    <p>
+      Here we investigate the combinatorial meaning of matrix multiplication.
+    </p>
+  </introduction>
+  <subsection xml:id="ss-theory">
+    <title>Theory</title>
+    
+    <theorem>
+      <title>Matrix products</title>
+      <p>
+        Let <m>A_1,\dots,A_d</m> be a sequence of matrices such that the product
+        <m>A_1A_2 \cdots A_d</m> is defined. Let <m>A[i,j]</m> denote the entry of the
+        <m>i</m>-th row and <m>j</m>-th column of the matrix <m>A</m>.
+        We will switch back to the more usual <m>A_{i,j}</m> when our matrices are not
+        themselves subscripted.
+      </p>
+      <p>
+        Then
+        <md>
+          <mrow>(A_1A_2 \cdots A_d)[i_0,i_d] \amp= \sum_{i_1,\dots,i_{d-1}} \prod_{k = 1}^{d} A_k[i_{k-1},i_k] </mrow>
+          <mrow>\amp= \sum_{i_1,\dots,i_{d-1}} A_1[i_0,i_1] A_2[i_1,i_2] \cdots A_d[i_{d - 1}, i_d].</mrow>
+        </md>
+        Where the sum is over the respective dimensions of <m>A_1,\dots,A_d</m>.
+      </p>
+      <proof>
+        <p>
+          For <m>d = 2</m>, we have, as a standard identity of matrix multiplication,
+          <me>(AB)[i,k] = \sum_j A[i,j]B[j,k].</me>
+        </p>
+        <p>
+          Now suppose this identity holds for every product of <m>d</m> matrices.
+          Let <m>A_1,\dots,A_{d + 1}</m> be <m>d + 1</m> matrices for which the product
+          <m>A_1 \cdots A_{d + 1}</m> is defined.
+        </p>
+        <p>
+          Using the <m>d = 2</m> case, and induction, we have
+          <md>
+            <mrow>
+              ((A_1 \cdots A_d)A_{d + 1})[i_0, i_{d + 1}] \amp =
+              \sum_{i_d} (A_1 \cdots A_d)[i_0,i_d] A_{d+1}[i_d, i_{d+1}]
+            </mrow>
+            <mrow>\amp = \sum_{i_d} \left( \sum_{i_1,\dots,i_{d-1}} \prod_{k = 1}^{d} A_k[i_{k-1},i_k] \right)A_{d+1}[i_d, i_{d+1}]</mrow>
+            <mrow>\amp = \sum_{i_1,\dots,i_{d}} \prod_{k = 1}^{d+1} A_k[i_{k-1},i_k] </mrow>
+          </md>
+        </p>
+        <p>The claim follows by induction.</p>
+      </proof>
+    </theorem>
+
+    <p>We will see this most often when <m>A</m> is a square matrix and <m>A_1 = \dots = A_d = A</m>.</p>
+
+    <corollary xml:id="cor-unweighted-walks">
+      <title>Walks in digraphs</title>
+      <p>
+        Let <m>A</m> be the adjacency matrix of a digraph <m>G</m>.
+        Then <m>(A^n)_{i,j}</m> is the number of walks from vertex <m>i</m> to vertex <m>j</m>
+        of length <m>n</m>.
+      </p>
+      <proof>
+        <p>
+          Applying the previous theorem,
+          <me>
+            (A^n)_{i,j} = \sum_{v_1,\dots,v_{n-1}} A_{i,v_1} A_{v_1, v_2} \cdots A_{v_{n-1}, j}.
+          </me>
+          But by definition, <m>A_{u,v} = 1</m> if and only if there is an arc <m>u \to v</m> and otherwise
+          it is <m>0</m>.
+        </p>
+        <p>
+          Thus, the product <m>A_{i,v_1} A_{v_1, v_2} \cdots A_{v_{n-1}, j}</m> is <m>1</m> if and only if
+          there is a walk <m>i \to v_1 \to v_2 \to \dots \to v_{n-1} \to j</m>. Otherwise the product is <m>0</m>
+          and the result follows.
+        </p>
+      </proof>
+    </corollary>
+
+    <example xml:id="ex-fib-sequence">
+      <title>Fibonacci Sequence</title>
+      <p>
+        Let us count the number of ways <m>f(n)</m> in which we can write <m>n</m>
+        as a sum of <m>1</m>'s and <m>2</m>'s where order matters. Equivalently,
+        take such a sum like <m>1 + 1 + 2 + 1 + 2</m> and remove the <m>+</m> signs
+        to write it as a string <m>11212</m>. Now replace <m>1</m> by <m>0</m> and
+        <m>2</m> by <m>11</m>. This ensures the strings always have length <m>n</m>.
+      </p>
+      <p>
+        E.g. for <m>n = 5</m>, these strings are (before and after replacement)
+        <me>11111, 1112, 1121, 1211, 2111, 122, 212, 221;</me>
+        <me>00000, 00011, 00110, 01100, 11000, 01111, 11011, 11110.</me>
+        Thus <m>f(5) = 8</m>. By construction, the <m>1</m>'s always appear in a pair
+        in the second set of strings.
+      </p>
+
+      <figure xml:id="fig-fib-automaton">
+        <caption>Directed graph for <xref ref="ex-fib-sequence"/></caption>
+        <image xml:id="tikz-fib-graph" width="40%">
+          <description>Directed graph associated with the Fibonacci sequence</description>
+          <latex-image>
+            \begin{tikzpicture}[node distance = 2cm, on grid, auto]
+              \node (q0) [state, initial] {$q_0$};
+              \node (q1) [state, right of=q0] {$q_1$};
+
+              \draw (q0) edge[loop above] node{$0$}
+                    (q0) edge[bend left,->] node{$1$} (q1)
+                    (q1) edge[bend left,->] node{$1$} (q0);
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+
+      <p>
+        Now consider a directed graph <m>G</m> with two vertices named <m>q_0</m> and <m>q_1</m> and
+        arcs <m>q_0 \to q_1, q_1 \to q_0</m> both labled '<m>1</m>' and a loop <m>q_0 \to q_0</m> labled
+        '<m>0</m>'.
+        We will start in state <m>q_0</m> and read the string from left to right following the arc whose
+        label matches the next character in the string.
+        This digraph is set-up precisely so that when we read the first '<m>1</m>' in a pair, we must
+        read a second '<m>1</m>' immediately next or the walk is invalid.
+      </p>
+      <p>
+        Let
+        <me>A = \begin{pmatrix} 1 \amp 1 \\ 1 \amp 0\end{pmatrix}</me>
+        be the adjacency matrix of <m>G</m>.
+      </p>
+      <p>
+        Applying <xref ref="cor-unweighted-walks"/>, <m>f(n)</m> is the number of closed walks from <m>q_0</m>
+        to <m>q_0</m> of length <m>n</m> and this is given by <m>(A^n)_{1,1}</m>. For instance,
+        <me>
+          A^5 = \begin{pmatrix} 8 \amp 5 \\ 5 \amp 3 \end{pmatrix} \implies f(5) = 8.
+        </me>
+      </p>
+
+      <sage>
+        <input>
+          A = matrix(ZZ, [[1, 1], [1, 0]])
+          [(A^n)[0,0] for n in range(0, 10)]
+        </input>
+        <output>
+          [1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
+        </output>
+      </sage>
+
+      <p>
+        More ambitiously, we can obtain a generating function
+        <md>
+          <mrow>F(x) = \sum_{n = 0}^\infty f(n) x^n \amp = \sum_{n = 0}^\infty (A^n)_{1,1} x^n</mrow>
+          <mrow>\amp = \left( \sum_{n = 0}^\infty (Ax)^n \right)_{1,1}</mrow>
+          <mrow>\amp = ((I_2 - xA)^{-1})_{1,1}.</mrow>
+        </md>
+        We can compute this inverse directly over <m>\Q(x)</m>
+        <me>
+          (I - xA)^{-1} = \frac{1}{1 - x - x^2}
+          \begin{pmatrix}
+            1 \amp x \\ x \amp 1 - x
+          \end{pmatrix}
+        </me>
+      </p>
+
+      <sage>
+        <input>
+          R.&lt;x&gt; = QQ[]
+          A = matrix(R, [[1,1],[1,0]])
+          B = identity_matrix(2) - x * A
+          print(det(B))
+          print(B.adjugate())
+        </input>
+        <output>
+          -x^2 - x + 1
+          [     1      x]
+          [     x -x + 1]
+        </output>
+      </sage>
+    </example>
+
+  </subsection>
+</section>

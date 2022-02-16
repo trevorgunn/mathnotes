@@ -8,8 +8,5 @@
     <p>Examples from combinatorics</p>
   </introduction>
 
-  <xi:include href="./sec_firstch-intro.ptx" />
-  <xi:include href="./sec_firstch-examples.ptx" />
-
-  <xi:include href="./ex_firstch.ptx"/>
+  <xi:include href="./sec_matrix_products.ptx" />
 </chapter>

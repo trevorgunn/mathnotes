@@ -19,7 +19,11 @@
 \newcommand{\Z}{\mathbf Z}
 \newcommand{\Q}{\mathbf Q}
 \newcommand{\R}{\mathbf R}
+
 \DeclareMathOperator{\rref}{rref}
+\DeclareMathOperator{\col}{col}
+\DeclareMathOperator{\row}{row}
+\DeclareMathOperator{\sp}{span}
 </macros>
 
 <!-- If you put any latex-image elements you can include preambles  -->

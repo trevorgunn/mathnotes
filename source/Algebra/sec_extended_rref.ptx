@@ -2,13 +2,13 @@
 
 <section xml:id="sec-extended-rref" xmlns:xi="http://www.w3.org/2001/XInclude">
   <title>The extended echelon form of a matrix</title>
-  
+
   <p>
     It is a basic algorithm in linear algebra to find the inverse of a matrix <m>A</m>
     by row reducing the augmented matrix <m>[A \mid I]</m>.
     However, let us investigate what happens when we do this when <m>A</m> is singular, or even non-square.
   </p>
- 
+
   <example>
     <p>
       Let's start with the <m>2 \times 2</m> case with the matrix
@@ -57,7 +57,7 @@
     </p>
   </definition>
 
-  <example>
+  <example xml:id="ex-sym-rowred">
     <title>Symbolic row reduction</title>
     <p>
       Suppose we take our matrix <m>A</m> as before, but this time we augment with the vector <m>v = (x, y) \in \Q[x,y]</m>.
@@ -97,4 +97,219 @@
     </p>
   </example>
 
+  <p>
+    We know that a vector <m>y = (y_1, y_2, \dots, y_m)</m> is in the column space of <m>A</m>
+    if and only if whenever the left side of <m>\rref [A \mid y]</m> is zero, the right side is also zero.
+    If we now treat <m>y_1, \dots, y_m</m> as indeterminates, this gives us a list of equations that must be satisfied
+    in order for <m>y \in \col(A)</m>. Let us now summarize.
+  </p>
+
+  <theorem xml:id="thm-col-as-ker">
+    <title>Equations for <m>\col(A)</m></title>
+    <p>
+      Let <m>A</m> be a <m>m \times n</m> matrix. Suppose that <m>\rref [A \mid I_m]</m>
+      has the form
+      <me>
+        \left[
+          \begin{array}{c|c}
+            A_{0,0} \amp A_{0,1} \\ \hline
+            0_{r \times n} \amp A_{1,1}
+          \end{array}
+        \right]
+      </me>
+      where <m>A_{0,0}</m> is full-rank (has no row of zeros).
+      Then <m>\col(A) = \ker(A_{1,1})</m>.
+    </p>
+
+    <proof>
+      <p>
+        Let <m>A^{-} = \begin{bmatrix} A_{0,1} \\ A_{1,1} \end{bmatrix}</m> be the left quasi-inverse
+        associated with this echelon form.
+      </p>
+      <p>
+        As we saw in <xref ref="ex-sym-rowred"/>, if <m>y = (y_1,\dots,y_m)</m> is a vector in <m>\R^m</m>
+        then
+        <me>
+          \rref [A \mid y] = A^{-} [A \mid y] =
+          \left[
+            \begin{array}{c|c}
+              A_{0,0} \amp A_{0,1}y \\ \hline
+              0_{r \times n} \amp A_{1,1}y
+            \end{array}
+          \right].
+        </me>
+        Since <m>A_{0,0}</m> is full-rank, this linear system is consistant if and only if <m>A_{1,1}y = 0</m>.
+      </p>
+    </proof>
+  </theorem>
+
+  <p>
+    Recall that for any matrix <m>X</m>, the spaces <m>\ker(X)</m> and <m>\row(X)</m>
+    are orthogonal complements. We will use this in the next theorem.
+  </p>
+
+  <theorem xml:id="thm-extended-rref-subspaces">
+    <title>Extended echelon form and the four fundamental subspaces</title>
+    <p>
+      Let <m>A</m> be a <m>m \times n</m> matrix. Write
+      <me>
+        \rref [A \mid I_m] =
+        \left[
+          \begin{array}{c|c}
+            A_{0,0} \amp A_{0,1} \\ \hline
+            0_{r \times n} \amp A_{1,1}
+          \end{array}
+        \right]
+        \text{ and }
+        \rref [A^\top \mid I_n] =
+        \left[
+          \begin{array}{c|c}
+            B_{0,0} \amp B_{0,1} \\ \hline
+            0_{s \times m} \amp B_{1,1}
+          \end{array}
+        \right]
+      </me>
+      where <m>A_{0,0}</m> is full-rank (has no row of zeros).
+    </p>
+    <p>Then:</p>
+    <ul>
+      <li><m>\ker A = \row B_{1,1} = \ker A_{0,0}</m></li>
+      <li><m>\col A = \row B_{0,0} = \ker A_{1,1}</m></li>
+      <li><m>\ker A^\top = \row A_{1,1} = \ker B_{0,0}</m></li>
+      <li><m>\row A = \row A_{0,0} = \ker B_{1,1}</m></li>
+    </ul>
+
+    <proof>
+      <p>
+        It is a basic property of <m>A_{0,0}</m> that <m>\row A_{0,0} = \row A</m>
+        and <m>\ker A_{0,0} = \ker A</m>.
+        Likewise, <m>\row B_{0,0} = \col A</m> and <m>\ker B_{0,0} = \ker A^\top</m>.
+      </p>
+      <p>
+        By <xref ref="thm-col-as-ker"/>, we also have <m>\ker A_{1,1} = \col A</m> and
+        <m>\ker B_{1,1} = \row A</m>.
+      </p>
+      <p>
+        Lastly, by orthogonality,
+        <me>
+          \row B_{1,1} \perp \ker B_{1,1} = \row A \perp \ker A
+        </me>
+        So <m>\row B_{1,1} = \ker A</m> and similarly, <m>\row A_{1,1} = \ker A^\top</m>.
+      </p>
+    </proof>
+  </theorem>
+
+  <p>
+    This theorem gives us two ways to write each of the four fundamental subspaces of <m>A</m>.
+    First, we can write each subspace as the row space (span) of a matrix in echelon form.
+    Second, we can write each subspace as the kernel (null space) of a matrix in echelon form.
+  </p>
+
+  <example>
+    <p>
+      Consider the matrix
+      <me>
+        A = \begin{bmatrix}
+          1 \amp -1 \amp 1 \amp -2 \\
+          3 \amp  1 \amp 7 \amp  2 \\
+          2 \amp  0 \amp 4 \amp  0
+        \end{bmatrix}.
+      </me>
+    </p>
+    <p>
+      We have
+      <me>
+        \rref [A \mid I_3] =
+        \left[\begin{array}{rrrr|rrr}
+        1 \amp 0 \amp 2 \amp 0 \amp 0 \amp 0 \amp \frac{1}{2} \\
+        0 \amp 1 \amp 1 \amp 2 \amp 0 \amp 1 \amp -\frac{3}{2} \\ \hline
+        0 \amp 0 \amp 0 \amp 0 \amp 1 \amp 1 \amp -2
+        \end{array}\right]
+      </me>
+      and
+      <me>
+        \rref[A^\top | I_4] =
+        \left[\begin{array}{rrr|rrrr}
+        1 \amp 0 \amp \frac{1}{2} \amp 0 \amp 0 \amp \frac{1}{8} \amp -\frac{7}{16} \\
+        0 \amp 1 \amp \frac{1}{2} \amp 0 \amp 0 \amp \frac{1}{8} \amp \frac{1}{16} \\
+        \hline
+        0 \amp 0 \amp 0 \amp 1 \amp 0 \amp -\frac{1}{2} \amp \frac{1}{4} \\
+        0 \amp 0 \amp 0 \amp 0 \amp 1 \amp 0 \amp -\frac{1}{2}
+        \end{array}\right]
+      </me>
+    </p>
+    <p>
+      Using <xref ref="thm-extended-rref-subspaces"/>, we have
+      <me>
+        \col A =
+        \sp\left\{
+          \begin{bmatrix} 1 \\ 0 \\ 1/2 \end{bmatrix},
+          \begin{bmatrix} 0 \\ 1 \\ 1/2 \end{bmatrix},
+        \right\}
+        = \ker \begin{bmatrix} 1 \amp 1 \amp -2 \end{bmatrix}
+      </me>
+      and
+      <me>
+        \ker A =
+        \sp\left\{
+          \begin{bmatrix} 1 \\ 0 \\ -1/2 \\ 1/4 \end{bmatrix},
+          \begin{bmatrix} 0 \\ 1 \\ 0 \\ -1/2 \end{bmatrix}
+        \right\}
+        = \ker
+        \begin{bmatrix}
+          1 \amp 0 \amp 2 \amp 0 \\
+          0 \amp 1 \amp 1 \amp 2
+        \end{bmatrix}
+      </me>
+    </p>
+  </example>
+
+  <sage>
+    <input>
+      A = matrix(QQ, [[1, -1, 1, -2], [3, 1, 7, 2], [2, 0, 4, 0]])
+      print("rref[A|I] =")
+      print(A.extended_echelon_form(True))
+      print("rref[A^T|I] =")
+      print(A.T.extended_echelon_form(True))
+      print("ker A =")
+      print(A.right_kernel())
+      print("col A =")
+      print(A.column_space())
+    </input>
+    <output>
+      rref[A|I] =
+      [   1    0    2    0|   0    0  1/2]
+      [   0    1    1    2|   0    1 -3/2]
+      [-------------------+--------------]
+      [   0    0    0    0|   1    1   -2]
+      rref[A^T|I] =
+      [    1     0   1/2|    0     0   1/8 -7/16]
+      [    0     1   1/2|    0     0   1/8  1/16]
+      [-----------------+-----------------------]
+      [    0     0     0|    1     0  -1/2   1/4]
+      [    0     0     0|    0     1     0  -1/2]
+      ker A =
+      Vector space of degree 4 and dimension 2 over Rational Field
+      Basis matrix:
+      [   1    0 -1/2  1/4]
+      [   0    1    0 -1/2]
+      col A =
+      Vector space of degree 3 and dimension 2 over Rational Field
+      Basis matrix:
+      [  1   0 1/2]
+      [  0   1 1/2]
+    </output>
+  </sage>
+
+  <p>
+    A mnemonic of sorts is that <m>\rref[A \mid I]</m> gives parametric representations of
+    <m>\row A</m> and <m>\ker A^\top = (\col A)^\perp</m> and implicit equations for
+    <m>\ker A</m> and <m>\col A</m>.
+  </p>
+  <p>
+    Of course, one only needs to remember half of that in order to piece together the other half.
+    From that, one also can piece together the same thing for <m>\rref [A^\top \mid I]</m>.
+    So one only needs to remember two things in order to be able to recall all eight statements
+    from <xref ref="thm-extended-rref-subspaces"/>.
+  </p>
 </section>

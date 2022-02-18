@@ -8,7 +8,7 @@
     <sage>
       <input>
         var("x, y")
-        A = random_matrix(ZZ, 2, algorithm="echelonizable", rank=2, upper_bound=10)
+        A = random_matrix(QQ, 2, algorithm="echelonizable", rank=2, upper_bound=10)
         # we randomize the solution vector rather than b to control how large the solution is
         b = A * random_vector(ZZ, 2)
         v = vector([x, y])
@@ -29,7 +29,7 @@
       <input>
         var("x, y, z")
         # feel free to change the rank to 2
-        A = random_matrix(ZZ, 3, algorithm="echelonizable", rank=3, upper_bound=10)
+        A = random_matrix(QQ, 3, algorithm="echelonizable", rank=3, upper_bound=10)
         # we randomize the solution vector rather than b to control how large the solution is
         b = A * random_vector(ZZ, 3)
         v = vector([x, y, z])
@@ -51,8 +51,7 @@
         m = 3
         n = 4
         rank = 2
-        A = random_matrix(ZZ, m, n, algorithm="echelonizable", rank=rank, upper_bound=10)
-        A = A.change_ring(QQ)
+        A = random_matrix(QQ, m, n, algorithm="echelonizable", rank=rank, upper_bound=10)
 
         print(f"A =\n{A}\n\nrref(A) =\n{A.rref()}\n\nker(A) = (as rowspace)\n{A.right_kernel()}")
       </input>
@@ -73,8 +72,7 @@
         m = 3
         n = 4
         rank = 2
-        A = random_matrix(ZZ, m, n, algorithm="echelonizable", rank=rank, upper_bound=10)
-        A = A.change_ring(QQ)
+        A = random_matrix(QQ, m, n, algorithm="echelonizable", rank=rank, upper_bound=10)
 
         print(f"A =\n{A}\n\nrref(A) =\n{A.rref()}\n\ncol(A) = (as rowspace)\n{A.column_space()}")
       </input>

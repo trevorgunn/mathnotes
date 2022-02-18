@@ -7,4 +7,5 @@
   </introduction>
 
   <xi:include href="./sec_extended_rref.ptx" />
+  <xi:include href="./sec_LA_practice_problems.ptx" />
 </chapter>

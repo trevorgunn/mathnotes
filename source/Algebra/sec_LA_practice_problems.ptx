@@ -74,7 +74,7 @@
         rank = 2
         A = random_matrix(QQ, m, n, algorithm="echelonizable", rank=rank, upper_bound=10)
 
-        print(f"A =\n{A}\n\nrref(A) =\n{A.rref()}\n\ncol(A) = (as rowspace)\n{A.column_space()}")
+        print(f"A =\n{A}\n\nrref(A) =\n{A.rref()}\n\nrref(A^T) =\n{A.T.rref()}\n\ncol(A) = (as rowspace)\n{A.column_space()}")
       </input>
     </sage>
     <sage>

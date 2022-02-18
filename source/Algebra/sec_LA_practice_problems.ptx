@@ -56,16 +56,14 @@
         print(f"A =\n{A}\n\nrref(A) =\n{A.rref()}\n\nker(A) = (as rowspace)\n{A.right_kernel()}")
       </input>
     </sage>
-    <solution>
-      <sage>
-        <input>
-          # Test if given vectors is a basis for col(A)
-          test = (ZZ^n).submodule([[1, 0, 0, 0], [0, 1, 0, 0]])
-          test == A.right_kernel()
-        </input>
-      </sage>
-    </solution>
-  </example>
+    <sage>
+      <input>
+        # Test if given vectors is a basis for ker(A)
+        test = (ZZ^n).submodule([[1, 0, 0, 0], [0, 1, 0, 0]])
+        test == A.right_kernel()
+      </input>
+    </sage>
+</example>
 
   <example>
     <title>Random column space</title>
@@ -80,14 +78,12 @@
         print(f"A =\n{A}\n\nrref(A) =\n{A.rref()}\n\ncol(A) = (as rowspace)\n{A.column_space()}")
       </input>
     </sage>
-    <solution>
-      <sage>
-        <input>
-          # Test if given vectors is a basis for col(A)
-          test = (ZZ^m).submodule([[1, 0, 0], [0, 1, 0]])
-          test == A.column_space()
-        </input>
-      </sage>
-    </solution>
+    <sage>
+      <input>
+        # Test if given vectors is a basis for col(A)
+        test = (ZZ^m).submodule([[1, 0, 0], [0, 1, 0]])
+        test == A.column_space()
+      </input>
+    </sage>
   </example>
 </section>

@@ -52,6 +52,7 @@
         n = 4
         rank = 2
         A = random_matrix(ZZ, m, n, algorithm="echelonizable", rank=rank, upper_bound=10)
+        A = A.change_ring(QQ)
 
         print(f"A =\n{A}\n\nrref(A) =\n{A.rref()}\n\nker(A) = (as rowspace)\n{A.right_kernel()}")
       </input>
@@ -59,7 +60,7 @@
     <sage>
       <input>
         # Test if given vectors is a basis for ker(A)
-        test = (ZZ^n).submodule([[1, 0, 0, 0], [0, 1, 0, 0]])
+        test = (QQ^n).subspace([[1, 0, 0, 0], [0, 1, 0, 0]])
         test == A.right_kernel()
       </input>
     </sage>
@@ -81,7 +82,7 @@
     <sage>
       <input>
         # Test if given vectors is a basis for col(A)
-        test = (ZZ^m).submodule([[1, 0, 0], [0, 1, 0]])
+        test = (QQ^m).subspace([[1, 0, 0], [0, 1, 0]])
         test == A.column_space()
       </input>
     </sage>

@@ -44,7 +44,7 @@
       for which <m>A^{-}A</m> is in reduced row echelon form.
     </p>
     <p>
-      In the Sage cell, there is also a vertical subdivision seperating the row of zeros in <m>\rref(A)</m>.
+      In the Sage cell, there is also a vertical subdivision separating the row of zeros in <m>\rref(A)</m>.
       More on that later.
     </p>
   </example>
@@ -138,7 +138,7 @@
             \end{array}
           \right].
         </me>
-        Since <m>A_{0,0}</m> is full-rank, this linear system is consistant if and only if <m>A_{1,1}y = 0</m>.
+        Since <m>A_{0,0}</m> is full-rank, this linear system is consistent if and only if <m>A_{1,1}y = 0</m>.
       </p>
     </proof>
   </theorem>

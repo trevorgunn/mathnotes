@@ -114,7 +114,7 @@
 
       <p>
         Now consider a directed graph <m>G</m> with two vertices named <m>q_0</m> and <m>q_1</m> and
-        arcs <m>q_0 \to q_1, q_1 \to q_0</m> both labled '<m>1</m>' and a loop <m>q_0 \to q_0</m> labled
+        arcs <m>q_0 \to q_1, q_1 \to q_0</m> both labeled '<m>1</m>' and a loop <m>q_0 \to q_0</m> labeled
         '<m>0</m>'.
         We will start in state <m>q_0</m> and read the string from left to right following the arc whose
         label matches the next character in the string.

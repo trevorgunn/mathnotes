@@ -4,13 +4,13 @@
   <title>Divisors on algebraic curves</title>
 
   <introduction>
-    Some definitions and examples of divisors on algebraic curves.
-  </introduction>
+    <p>Some definitions and examples of divisors on algebraic curves.</p>
 
-  <p>
-    Throught this section, we let <m>X</m> be an algebraic curve
-    over an algebraically closed field <m>k</m>.
-  </p>
+    <p>
+      Throughout this section, we let <m>X</m> be an algebraic curve
+      over an algebraically closed field <m>k</m>.
+    </p>
+  </introduction>
 
   <subsection xml:id="ss-divisor-examples">
     <definition>
@@ -139,7 +139,7 @@
   <subsection xml:id="ss-linear-series">
     <title>Linear Series</title>
 
-    <definition>
+    <definition xml:id="def-line-bundle">
       <p>
         The <em>line bundle</em> associated to a divisor <m>D</m>
         is the sheaf <m>\L(D)</m> where for any open set <m>U</m> of <m>X</m>,
@@ -237,11 +237,15 @@
       More generally, given an embedding <m>s : X \to \P^n</m>, every hyperplane
       <m>H \in \P^{n,*}</m> intersects <m>X</m> at some divisor <m>D</m>
       (a set of points with multiplicities).
-      We also see that such a divisor is effective (non-negative multiplicities).
+      We also see that such a divisor has non-negative coefficients.
       This motivates the following definition.
     </p>
 
     <definition>
+      <p>
+        A divisor <m>E</m> with all non-negative coefficients is called <em>effective</em>
+        and we write <m>E \ge 0</m> to indicate this.
+      </p>
       <p>
         Given a divisor <m>D</m>, the set of all effective divisors <m>E \ge 0</m>
         which are linearly equivalent to <m>D</m> is called a <em>complete
@@ -249,39 +253,48 @@
       </p>
     </definition>
 
-    <theorem>
-      <title>Linear systems and globals sections</title>
+    <remark>
       <p>
-        The linear system <m>|D|</m> corresponds to the projective space
-        associated to the vector space <m>\Gamma(X, \L(D))</m> of global sections.
-        Explicitly,
+        Recall that we defined <ref xref="def-line-bundle" />
+        <me>
+          \L(D)(U) = \{f \in \O_X(U) : \divisor(f) + D \ge 0\}.
+        </me>
+        It follows that divisors of <m>|D|</m> correspond to global sections of <m>\L(D)</m>.
+      </p>
+      <p>
+        We have <m>\divisor(s) = \divisor(s')</m> if <m>\divisor(s/s') = 0</m>. When <m>X</m>
+        is proper, we have <m>\divisor(s/s') = 0 \iff s/s' \in k^*</m>. So divisors of global
+        sections define an element of <m>|D|</m> only up to a non-zero scalar.
+        In other words, what we have is
         <me>|D| \cong (\Gamma(X, \L(D)) - \{0\})/k^*.</me>
       </p>
-      <proof>
-        <p>(Hartshorne II.7.7)</p>
+    </remark>
 
-        <p>
-          Let <m>s \in \Gamma(X, \L(D))</m> and suppose that corresponds to
-          a rational function <m>f</m> on <m>X</m>.
-          Suppose <m>D</m> is locally given by <m>\divisor(g)</m> on some open set
-          <m>U</m>.
-          Then the isomorphism <m>\L(D) \to \O_X</m> takes <m>s \mapsto fg</m>.
-          In other words, <m>\divisor(s) = D + \divisor(f)</m>
-          on every open set. Thus <m>\divisor(s) \sim D</m> via the rational function <m>f</m>.
-          Additionally, <m>s</m> is a global section so it can't have any poles. Thus
-          <m>\divisor(s) \ge 0</m>.
-        </p>
-        <p>
-          Conversely, suppose <m>E = D + \divisor(f)</m> with <m>f \in k(X)</m>.
-          Then define a section <m>s \in \L(D)</m> which is locally <m>f/g</m>
-          with the notation as above.
-        </p>
-        <p>
-          Finally, note that if <m>\divisor(s) = \divisor(s')</m> then <m>\divisor(s/s') = 0</m>
-          and hence <m>s/s' \in k</m> since <m>X</m> is proper/projective.
-        </p>
-      </proof>
-    </theorem>
+    <remark>
+      <title>Another definition of line bundle</title>
+      <p>
+        In <ref xref="def-line-bundle" /> we defined <m>\L(D)</m> and called it a "line bundle."
+        This is a special case of a more general definition.
+      </p>
+      <p>
+        A sheaf <m>\L</m> is called a <em>line bundle</em> if there exists an open cover
+        <m>X = \bigcup U_i</m> for which <m>\L(U_i) \cong \O_X(U_i)</m> for all <m>i</m>.
+      </p>
+      <p>
+        When <m>X</m> is smooth, then every divisor on <m>X</m> is locally principal
+        (because <m>\O_X</m> is locally a unique factorization ring). So there exists an open
+        cover <m>X = \bigcup U_i</m> and functions <m>f_i \in \O_X(U_i)</m> such that
+        <me>D|_{U_i} = \divisor(f_i).</me>
+        Recall that a section <m>s \in \L(D)(U_i)</m> has to satisfy <m>\divisor(s) + \divisor(f_i) \ge 0.</m>
+        Therefore, a global section locally takes the form of <m>s = f/f_i</m> with <m>f \in k[X]</m>.
+      </p>
+      <p>
+        The functions <m>f_i</m> determine the isomorphism <m>\L(D)(U_i) \to \O_X(U_i).</m>
+        Conversely, every line bundle <m>\L</m> is isomorphic to <m>\L(D)</m> where the functions
+        <m>f_i \in \O_X(U_i)</m> are the reciprocals of the image of <m>1 \in \L(U_i)</m>
+        under the isomorphism <m>\L(U_i) \to \O_X(U_i)</m>.
+      </p>
+    </remark>
 
   </subsection>
 </section>

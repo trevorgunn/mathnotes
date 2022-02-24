@@ -15,5 +15,6 @@
         "rref",
         "tikz",
         "tikzpicture"
-    ]
+    ],
+    "editor.tabSize": 2
 }

@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<chapter xml:id="ch-misc" xmlns:xi="http://www.w3.org/2001/XInclude">
+
+  <title>Miscellaneous</title>
+
+  <introduction>
+    <p>Miscellaneous notes</p>
+  </introduction>
+
+  <xi:include href="./sec_ab.ptx" />
+</chapter>

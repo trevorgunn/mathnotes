@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-ab" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Writing proofs of <m>A = B</m></title>
+
+  <p>
+    Starting out with proof writing, many proofs that we write will either consist of
+    or be heavily centred around showing some equality <m>A = B</m>.
+    Or possibly it will be an inequality <m>A \le B</m> for which this advice will also apply.
+  </p>
+
+  <p>
+    Let us start by looking at the kind of proof many people write when they begin writing proofs.
+  </p>
+
+  <example>
+    <title>
+      To show that <m>\ln(a) + \ln(b) = \ln(ab)</m>, beginning proof
+    </title>
+    <md>
+      <mrow>\ln(a) + \ln(b) \amp = \ln(ab)</mrow>
+      <mrow>e^{\ln(a) + \ln(b)} \amp = e^{\ln(ab)}</mrow>
+      <mrow>e^{\ln(a) + \ln(b)} \amp = ab</mrow>
+      <mrow>e^{\ln(a)} \cdot e^{\ln(b)} \amp = ab</mrow>
+      <mrow>a \cdot b \amp = ab</mrow>
+      <mrow>\text{true}</mrow>
+    </md>
+    <p>Therefore <m>\ln(a) + \ln(b) = \ln(ab)</m>, QED.</p>
+  </example>
+
+  <p>
+    As you progress with proof writing, and reading your professors' and textbooks' proofs,
+    you'll see that this style is discouraged.
+    If you ever end up teaching proof writing in any capacity, you'll inevitably have to communicate
+    what exactly is wrong with this proof.
+  </p>
+
+  <p>
+    There are two main problems here. The first is that these chains of implications need to be
+    reversible (if and only if) statements. This is important because it's not true that if
+    <m>A = B</m> implies <m>C = D</m> and we can see that <m>C = D</m> is true, then we cannot
+    necessarily reverse that and claim that <m>A = B</m> is true.
+    Such non-reversibility is the basis of many a false proof. E.g.
+  </p>
+
+  <md>
+    <mrow>x \amp = 1</mrow>
+    <mrow>x \cdot x \amp = x \cdot 1</mrow>
+    <mrow>x^2 - x \amp = 0</mrow>
+    <mrow>x(x - 1) \amp = 0</mrow>
+    <mrow>x \amp = 0</mrow>
+    <mrow>0 \amp = 0</mrow>
+  </md>
+
+  <p>
+    Here where we went wrong is that <m>x(x - 1) = 0</m> is not the same as <m>x = 0</m>.
+  </p>
+
+  <p>
+    I feel however that this point gets harped on disproportionally and to the extent that
+    all it teaches people to do is to insert some <m>\iff</m> symbols and maybe reverse
+    the order of the statements at the end as in the next example.
+  </p>
+
+  <example>
+    <title>
+      To show that <m>\ln(a) + \ln(b) = \ln(ab)</m>, intermediate proof
+    </title>
+    <md>
+      <mrow>\amp\amp a \cdot b \amp = ab</mrow>
+      <mrow>\amp\iff\amp e^{\ln(a) + \ln(b)} \amp = ab</mrow>
+      <mrow>\amp\iff\amp e^{\ln(a)} \cdot e^{\ln(b)} \amp = ab</mrow>
+      <mrow>\amp\iff\amp e^{\ln(a) + \ln(b)} \amp = e^{\ln(ab)}</mrow>
+      <mrow>\amp\iff\amp \ln(a) + \ln(b) \amp = \ln(ab)</mrow>
+    </md>
+    <p>Therefore <m>\ln(a) + \ln(b) = \ln(ab)</m>, QED.</p>
+  </example>
+
+  <p>
+    Now, I won't say this isn't better, but it does bring us to problem number two.
+    The problem for which I feel is the most important of the two, namely this:
+    <em>proofs are about communication.</em>
+    Specifically, a proof should appeal to definitions and previous facts (theorems),
+    as well as explain each step, in order to convince the reading that what they are
+    reading follows <em>logically</em>.
+  </p>
+
+  <p>
+    Let me first show an example of how <em>I</em> would write this proof and then discuss.
+  </p>
+
+  <example>
+    <title>
+      To show that <m>\ln(a) + \ln(b) = \ln(ab)</m>, my proof
+    </title>
+    <p>
+      First, recall that <m>\ln(ab)</m> is defined to be the quantity <m>t</m> for which
+      <m>e^{t} = ab</m>. Therefore, we need to show that <m>t = \ln(a) + \ln(b)</m>
+      is such a quantity. That is, that <m>e^t = ab</m>.
+    </p>
+
+    <p>To that end, we calculate</p>
+    <me>
+      e^{\ln(a) + \ln(b)} = e^{\ln(a)} \cdot e^{\ln(b)} = a \cdot b
+    </me>
+    <p>
+      since again, by definition, <m>e^{\ln(x)} = x</m>.
+    </p>
+    <p>
+      Therefore, <m>\ln(a) + \ln(b) = \ln(ab)</m>.
+    </p>
+  </example>
+
+</section>

@@ -15,14 +15,26 @@
 <!-- to define these semantically, so that the macro relates to what-->
 <!-- it defines.                                                    -->
 <macros>
+\newcommand{\A}{\mathbf A}
 \newcommand{\N}{\mathbf N}
-\newcommand{\Z}{\mathbf Z}
+\renewcommand{\P}{\mathbf P}
 \newcommand{\Q}{\mathbf Q}
 \newcommand{\R}{\mathbf R}
+\newcommand{\Z}{\mathbf Z}
 
-\DeclareMathOperator{\rref}{rref}
+\renewcommand{\O}{\mathcal O}
+\renewcommand{\L}{\mathscr L}
+
 \DeclareMathOperator{\col}{col}
+\DeclareMathOperator{\Div}{Div}
+\DeclareMathOperator{\divisor}{div}
+\DeclareMathOperator{\Jac}{Jac}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Prin}{Prin}
+\DeclareMathOperator{\Proj}{Proj}
 \DeclareMathOperator{\row}{row}
+\DeclareMathOperator{\rref}{rref}
+\DeclareMathOperator{\Spec}{Spec}
 \DeclareMathOperator{\spn}{span}
 </macros>
 

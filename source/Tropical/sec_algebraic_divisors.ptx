@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-algebraic" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Divisors on algebraic curves</title>
+
+  <introduction>
+    Some definitions and examples of divisors on algebraic curves.
+  </introduction>
+
+  <p>
+    Throught this section, we let <m>X</m> be an algebraic curve
+    over an algebraically closed field <m>k</m>.
+  </p>
+
+  <subsection xml:id="ss-divisor-examples">
+    <definition>
+      <p>
+        A <em>divisor</em> on <m>X</m> is a fintely supported, formal sum
+        <me>\sum_{p \in X} a_p \cdot p</me>
+        with integer coefficients.
+        The set of all divisors is the Abelian group <m>\Div(X)</m>
+      </p>
+    </definition>
+
+    <definition>
+      <p>
+        The <em>degree</em> of a divisor <m>D = \sum a_p \cdot p</m> is
+        <me>\deg(D) = \sum a_p \in \Z.</me>
+        The group of all divisors of degree zero is <m>\Div^0(X) = \ker(\deg)</m>.
+      </p>
+    </definition>
+
+    <definition>
+      <p>
+        The divisor associated to a rational function <m>f \in k(X)</m>
+        is <me>\divisor(f) = \sum_{p \in X} \ord_p(f) \cdot p.</me>
+        A divisor of this form is called a <em>principal</em> divisor.
+        The group of all principal divisors is the group <m>\Prin(X)</m>.
+        The <em>Jacobian</em> of <m>X</m> is the quotient
+        <m>\Jac(X) = \Div(X) / \Prin(X)</m>.
+      </p>
+      <p>
+        Two divisors <m>D_0, D_1</m> are said to be <em>linearly equivalent</em>
+        if their difference is a principal divisor and write <m>D_0 \sim D_1</m>.
+      </p>
+    </definition>
+
+    <remark>
+      <p>
+        If <m>X</m> is proper, then every rational function has degree
+        <m>0</m> and we define <m>\Jac^0(X) = \Div^0(X)/\Prin(X)</m>.
+        Here we have
+        <me>\Jac(X) \cong \Jac^0(X) \times \Z.</me>
+      </p>
+    </remark>
+
+    <example>
+      <title>Divisors on <m>\A^1</m></title>
+      <p>
+        On <m>\A^1</m>, we can specify zeroes and poles of rational functions
+        freely. That is, for <m>D = a_1 \cdot p_1 + \dots + a_n \cdot p_n</m>,
+        we have
+      </p>
+      <me>
+        D = \divisor\left( (x - p_1)^{a_1} \cdots (x - p_n)^{a_n} \right)
+      </me>
+      <p>
+        Hence <m>\Jac(\A^1) = 0</m>.
+      </p>
+    </example>
+
+    <example>
+      <title>Divisors on <m>\P^1</m></title>
+      <p>
+        On <m>\P^1</m>, as we said above, every rational function has degree <m>0</m>.
+        Therefore
+      </p>
+      <me>
+        \Jac^0(\P^1) = 0 \text{ and } \Jac(\P^1) \cong \Z.
+      </me>
+    </example>
+
+    <example>
+      <title>Divisors on <m>\Spec \O_K</m></title>
+      <p>
+        If <m>K</m> is a finite extension of <m>\Q</m> and
+        <m>\O_K</m> is the ring of integral elements of <m>K</m>,
+        then the Jacobian of <m>\Spec \O_K</m> is the same thing as the
+        class group of <m>\O_K</m>.
+      </p>
+
+      <sage>
+        <input>
+          x = QQ['x'].gen()
+          K = NumberField(x^2 + 5, x)
+          K.class_group()
+        </input>
+        <output>
+          Class group of order 2 with structure C2 of Number Field in x with defining polynomial x^2 + 5
+        </output>
+      </sage>
+    </example>
+
+    <example>
+      <title>Elliptic curves</title>
+      <p>
+        An elliptic curve over <m>k</m> is a projective smooth genus-one curve <m>E</m>
+        with a special marked point '<m>p_0</m>.'
+      </p>
+      <p>
+        Every elliptic curve is isomorphic to its Jacobian with
+        <me>p \mapsto p - p_0 \in \Jac^0(E).</me>
+        This is called the <em>Abel-Jacobi</em> map.
+      </p>
+      <sage>
+        <input>
+          # Solving y^2 = x^3 - 2 via Elliptic curves
+          E = EllipticCurve([0, -2])
+          print(E)
+          print(E.integral_points())
+        </input>
+        <output>
+          Elliptic Curve defined by y^2 = x^3 - 2 over Rational Field
+          [(3 : 5 : 1)]
+        </output>
+      </sage>
+
+      <sage>
+        <input>
+          E(3, 5, 1) * 2
+        </input>
+        <output>
+          (129/100 : -383/1000 : 1)
+        </output>
+      </sage>
+    </example>
+  </subsection>
+
+  <subsection xml:id="ss-linear-series">
+    <title>Linear Series</title>
+
+    <definition>
+      <p>
+        The <em>line bundle</em> associated to a divisor <m>D</m>
+        is the sheaf <m>\L(D)</m> where for any open set <m>U</m> of <m>X</m>,
+      </p>
+      <me>
+        \L(D)(U) = \{f \in \O_X(U) : \divisor(f) + D \ge 0\}.
+      </me>
+    </definition>
+
+    <remark>
+      <p>
+        The global sections of <m>\L(D)</m> form a finite dimensional vector space.
+        If <m>\ell(D)</m> is the dimension of this vector space, then we have
+      </p>
+      <me>
+        \ell(D) - \ell(K - D) = \deg(D) + 1 - g.
+      </me>
+      <p>
+        This is known as the <em>Riemann-Roch Theorem</em>. Here <m>K</m>
+        is a divisor known as the <em>canonical divisor</em>. In particular,
+        we have <em>Riemann's Inequality</em>
+      </p>
+      <me>
+        \ell(D) \ge \deg(D) + 1 - g
+      </me>
+      <p>
+        which is sharp if (but not only if) <m>\deg(D) > \deg(K) = 2g - 2</m>.
+      </p>
+    </remark>
+
+    <definition>
+      <p>
+        Let <m>s_0, \dots, s_n</m> generate the global sections of some line bundle
+        <m>\L</m>. Then for each point <m>x \in X</m>, these global sections generate
+        the ring of functions at <m>x</m>. In particular, we never simultaneously have
+        <m>s_0(x) = s_1(x) = \dots = s_n(x) = 0</m>.
+      </p>
+      <p>
+        Therefore, we can define a map <m>s : X \to \P^n</m> given by
+        <me>s(x) = [s_0(x) : s_1(x) : \cdots : s_n(x)].</me>
+      </p>
+    </definition>
+
+    <remark>
+      <p>
+        Conversely, suppose we have a map <m>s : X \to \P^n = \Proj k[x_0,\dots,x_n]</m>.
+        Then we can pull back the functions <m>x_0, x_1, \dots, x_n</m>
+        on <m>\P^n</m> to functions <m>s_0, \dots, s_n</m> on <m>X</m>.
+      </p>
+      <p>
+        The functions <m>s_0,\dots,s_n</m> generate the sheaf <m>s^*(\O(1))</m>.
+      </p>
+    </remark>
+
+    <example>
+      <title>Veronese embedding</title>
+      <p>
+        Let <m>X = \P^r</m> and let <m>\L = \O(d)</m> with <m>d > 0</m>.
+        Then the set of monomials of degree <m>d</m> is a basis for the space of
+        global sections of <m>\O(d)</m>.
+        The induced map
+        <me>
+          s : \P^r \to \P^n, \quad n = \binom{r + d}{d} - 1
+        </me>
+        is called the <em>Veronese map</em>.
+      </p>
+      <p>
+        For <m>r = 2</m> and <m>d = 2</m> this is the map
+        <me>[x:y:z] \to [x^2 : y^2 : z^2 : xy : xz : yz]</me>
+        from <m>\P^2 \to \P^5</m>.
+      </p>
+      <p>
+        For <m>r = 1</m> and <m>d = 3</m>, the image of
+        <me>[x:y] \to [x^3 : x^2y : xy^2 : y^3] \in \P^3</me>
+        is the twisted cubic.
+      </p>
+    </example>
+
+    <remark>
+      <p>
+        Under this construction, linear forms on <m>\P^n</m>
+        correspond to <m>d</m>-forms on <m>\P^r</m>.
+        For instance, the twisted cubic has the property that every plane
+        intersects it at exactly 3 points.
+      </p>
+      <p>
+        This fact can be used to show that every graph can be embedded in <m>\R^3</m>
+        using straight lines for edges by putting the vertices on the twisted cubic.
+        If two lines were to cross that would form a plane which intersects the twisted
+        cubic in 4 points.
+      </p>
+    </remark>
+
+    <p>
+      More generally, given an embedding <m>s : X \to \P^n</m>, every hyperplane
+      <m>H \in \P^{n,*}</m> intersects <m>X</m> at some divisor <m>D</m>
+      (a set of points with multiplicities).
+      We also see that such a divisor is effective (non-negative multiplicities).
+      This motivates the following definition.
+    </p>
+
+    <definition>
+      <p>
+        Given a divisor <m>D</m>, the set of all effective divisors <m>E \ge 0</m>
+        which are linearly equivalent to <m>D</m> is called a <em>complete
+        linear system</em> and is denoted <m>|D|</m>.
+      </p>
+    </definition>
+
+    <theorem>
+      <title>Linear systems and globals sections</title>
+      <p>
+        The linear system <m>|D|</m> corresponds to the projective space
+        associated to the vector space <m>\Gamma(X, \L(D))</m> of global sections.
+        Explicitly,
+        <me>|D| \cong (\Gamma(X, \L(D)) - \{0\})/k^*.</me>
+      </p>
+      <proof>
+        <p>(Hartshorne II.7.7)</p>
+
+        <p>
+          Let <m>s \in \Gamma(X, \L(D))</m> and suppose that corresponds to
+          a rational function <m>f</m> on <m>X</m>.
+          Suppose <m>D</m> is locally given by <m>\divisor(g)</m> on some open set
+          <m>U</m>.
+          Then the isomorphism <m>\L(D) \to \O_X</m> takes <m>s \mapsto fg</m>.
+          In other words, <m>\divisor(s) = D + \divisor(f)</m>
+          on every open set. Thus <m>\divisor(s) \sim D</m> via the rational function <m>f</m>.
+          Additionally, <m>s</m> is a global section so it can't have any poles. Thus
+          <m>\divisor(s) \ge 0</m>.
+        </p>
+        <p>
+          Conversely, suppose <m>E = D + \divisor(f)</m> with <m>f \in k(X)</m>.
+          Then define a section <m>s \in \L(D)</m> which is locally <m>f/g</m>
+          with the notation as above.
+        </p>
+        <p>
+          Finally, note that if <m>\divisor(s) = \divisor(s')</m> then <m>\divisor(s/s') = 0</m>
+          and hence <m>s/s' \in k</m> since <m>X</m> is proper/projective.
+        </p>
+      </proof>
+    </theorem>
+
+  </subsection>
+</section>

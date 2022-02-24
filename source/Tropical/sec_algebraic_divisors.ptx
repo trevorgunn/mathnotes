@@ -13,9 +13,9 @@
   </introduction>
 
   <subsection xml:id="ss-divisor-examples">
-    <definition>
+    <definition xml:id="def-weil-divisor">
       <p>
-        A <em>divisor</em> on <m>X</m> is a fintely supported, formal sum
+        A <em>divisor</em> on <m>X</m> is a finitely-supported, formal sum
         <me>\sum_{p \in X} a_p \cdot p</me>
         with integer coefficients.
         The set of all divisors is the Abelian group <m>\Div(X)</m>
@@ -33,7 +33,9 @@
     <definition>
       <p>
         The divisor associated to a rational function <m>f \in k(X)</m>
-        is <me>\divisor(f) = \sum_{p \in X} \ord_p(f) \cdot p.</me>
+        is <me>\divisor(f) = \sum_{p \in X} \ord_p(f) \cdot p</me>
+        where <m>\ord_p(f)</m> is the order of a zero or pole of <m>f</m>,
+        for instance, by looking at its order as a Laurent series.
         A divisor of this form is called a <em>principal</em> divisor.
         The group of all principal divisors is the group <m>\Prin(X)</m>.
         The <em>Jacobian</em> of <m>X</m> is the quotient
@@ -255,7 +257,7 @@
 
     <remark>
       <p>
-        Recall that we defined <ref xref="def-line-bundle" />
+        Recall that we defined (<xref ref="def-line-bundle" />)
         <me>
           \L(D)(U) = \{f \in \O_X(U) : \divisor(f) + D \ge 0\}.
         </me>
@@ -273,7 +275,7 @@
     <remark>
       <title>Another definition of line bundle</title>
       <p>
-        In <ref xref="def-line-bundle" /> we defined <m>\L(D)</m> and called it a "line bundle."
+        In <xref ref="def-line-bundle" /> we defined <m>\L(D)</m> and called it a "line bundle."
         This is a special case of a more general definition.
       </p>
       <p>

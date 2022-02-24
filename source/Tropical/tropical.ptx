@@ -5,8 +5,12 @@
   <title>Tropical Geometry</title>
 
   <introduction>
-    <p>Notes about Tropical and Non-Archemedian Geometry</p>
+    <p>
+      Notes about Tropical and Non-Archimedean Geometry.
+      Much of this is about my research and related background.
+    </p>
   </introduction>
 
   <xi:include href="./sec_algebraic_divisors.ptx" />
+  <xi:include href="./sec_tropical_divisors.ptx" />
 </chapter>

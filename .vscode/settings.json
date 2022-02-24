@@ -2,19 +2,24 @@
     "cSpell.words": [
         "adjugate",
         "backmatter",
+        "bigcup",
+        "binom",
         "bmatrix",
         "combalg",
         "docinfo",
         "frontmatter",
         "indeterminates",
         "infty",
+        "mapsto",
         "mrow",
         "perp",
         "pmatrix",
+        "Prin",
         "rowred",
         "rref",
         "tikz",
-        "tikzpicture"
+        "tikzpicture",
+        "weil"
     ],
     "editor.tabSize": 2
 }

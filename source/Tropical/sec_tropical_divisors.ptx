@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-tropical" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Divisors on tropical curves</title>
+
+  <subsection xml:id="ss-tropical-curves">
+    <definition>
+      <p>
+        A <em>metric graph</em> <m>\Gamma</m> is a graph in the combinatorial sense
+        but modelled as a metric space by giving each edge <m>e</m> a positive length
+        <m>\ell(e) \in (0, \infty]</m>,
+        possibly restricted to some subgroup like <m>\Q</m> or <m>\Z</m>.
+        In this way, we make each edge isometric to the interval <m>[0,\ell(e)]</m>.
+      </p>
+      <p>
+        Moreover, the only vertices we consider are the ones that are topologically
+        defined. I.e. the ones of degree different from 2 since two edges meeting at a
+        single vertex can just be joined up and their lengths added. Lastly, only
+        leaf edges are allowed to be infinite and conversely, every leaf edge is required
+        to be infinite.
+      </p>
+      <p>
+        We call the underlying combinatorial graph <m>|\Gamma|</m>.
+      </p>
+    </definition>
+
+    <figure xml:id="fig-metric-graph">
+      <caption>Example of a metric graph (not drawn to any scale)</caption>
+      <image xml:id="tikz-metric-graph" width="75%">
+        <description>Metric graph consisting of two circles joined by a bridging edge</description>
+        <latex-image>
+          \begin{tikzpicture}
+            \draw (0,0) circle (1)
+                  (4,0) circle (1)
+                  (1,0) -- (3,0);
+            \draw (2,0) node[above] {$3$}
+                  (0,1) node[above] {$1$}
+                  (4,1) node[above] {$5/2$};
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+
+    <p>
+      Mirroring <xref ref="def-weil-divisor" /> the from the previous section,
+      we define divisors and a divisor group.
+    </p>
+
+    <definition>
+      <p>
+        A <em>divisor</em> on <m>\Gamma</m> is a finitely-supported formal sum
+        <me>
+          D = \sum_{p \in \Gamma} a_p \cdot p
+        </me>
+        with <m>a_p \in \Z</m> and <m>p</m> from anywhere in <m>\Gamma</m>, not just the topological
+        vertices.
+      </p>
+      <p>
+        The set of all divisors is the group <m>\Div(\Gamma)</m> and the degree map is
+        <m>\deg(\sum a_p \cdot p) = \sum a_p</m>.
+      </p>
+    </definition>
+
+    <p>
+      Like with algebraic curves, we also have a notion of principal divisors. These are
+      given as the divisors of piecewise-linear functions.
+      Really these are piecewise affine-functions, but like with algebraic curves, the
+      "scalar multiple" doesn't matter so everyone just calls them "linear."
+    </p>
+
+    <p>
+      In the next section, we will see why these are a natural choice and how they relate to
+      rational functions on algebraic curves.
+    </p>
+
+    <definition>
+      <p>
+        A function <m>f : \Gamma \to \R</m> is <em>piecewise linear</em>, if on each edge it is a
+        continuous function that can be broken up into a finite set of linear functions.
+      </p>
+      <p>
+        The divisor of such an <m>f</m> is supported at the points <m>p</m> at which <m>f</m>
+        is non-differentiable (including the topological vertices of <m>\Gamma</m>).
+        We define <m>\ord_p(f)</m> to be the sum of the incoming slopes of <m>f</m> at <m>p</m>
+        and define
+        <me>
+          \divisor(f) = \sum_{p \in \Gamma} \ord_p(f) \cdot p.
+        </me>
+      </p>
+      <p>
+        As in the previous section, we define <m>\Prin(\Gamma)</m> as the set of all principal divisors
+        and define <m>\Jac(\Gamma) = \Div(\Gamma) / \Prin(\Gamma)</m> and
+        <m>\Jac^0(\Gamma) = \Div^0(\Gamma)/\Prin(\Gamma)</m>.
+        Like before, if <m>\Gamma</m> is compact, then every principal divisor has degree <m>0</m>.
+      </p>
+    </definition>
+  </subsection>
+</section>

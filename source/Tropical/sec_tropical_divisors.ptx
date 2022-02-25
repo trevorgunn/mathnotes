@@ -359,6 +359,18 @@
     </p>
 
     <p>
+      The reason why this self-intersection number is what it is is because the
+      total degree needs to be <m>0</m>.
+      Many self-intersection problems are computed this way. For instance, in the plane,
+      two lines intersect in a single point. So <m>\ell \cdot \ell = 1</m>.
+      But now if we blow up the point of intersection, the class <m>\ell</m> becomes
+      <m>\ell + E</m><mdash/>an exceptional divisor. And here we still have
+      <m>(\ell + E)(\ell + E) = 1</m> except now <m>\ell</m> and <m>\ell</m>
+      do not intersect but <m>\ell \cdot E = 1</m> and in order to make the equation
+      come out right, <m>E \cdot E = -1</m>.
+    </p>
+
+    <p>
       We point the reader to <xref ref="L"/> (Chapter 9) for further explanation.
       The takeaway here is that divisors supported on <m>\X_k</m>
       always map to principal divisors in <m>G</m>.
@@ -466,6 +478,95 @@
         </latex-image>
       </image>
     </example>
+
+  </subsection>
+
+  <subsection xml:id="ss-baker-specialization">
+    <title>The Baker Specialization Lemma</title>
+
+    <p>
+      First we need a definition of <m>r(D) = \dim \L(D) - 1</m> that
+      can be made sense of if <m>D</m> is a tropical divisor.
+    </p>
+
+    <definition>
+      <p>
+        If <m>D</m> is a divisor (tropical or algebraic), then recall that
+        <m>|D| = \{E \ge 0 : E \sim D\}</m>. We define <m>r(D) = -1</m> if
+        <m>|D| = \varnothing</m> and otherwise
+        <me>
+          r(D) =           
+            \max\{k : |D - E| \ne \varnothing, \text{ for all } E \in \Div_+^k(X)\}.
+        </me>
+        (<m>\Div_+^k(X) = </m> effective and degree <m>k</m>.)
+      </p>
+      <p>
+        This definition works the same if we replace <m>X</m> by <m>G</m> or <m>\Gamma</m>.
+      </p>
+    </definition>
+
+    <theorem xml:id="thm-rank-comparison">
+      <title>Relation to the previous definition</title>
+      <p>The number <m>r(D)</m> we defined is equal to <m>\dim \L(D) - 1</m> for algebraic curves.</p>
+      <proof>
+        See e.g. <xref ref="B"/> Lemma 2.4.
+      </proof>
+    </theorem>
+
+    <theorem xml:id="thm-rank-properties">
+      <p>
+        For every point <m>P</m>, we have <m>r(D - P) \ge r(D) - 1</m> and moreover there exists
+        a point <m>P</m> for which <m>r(D - P) = r(D) - 1</m>.
+      </p>
+      <proof>
+        <p>Let <m>r = r(D)</m>. If <m>r(D) \le 0</m> then this is evident.</p>
+        <p>
+          Now suppose <m>E = P_1 + P_2 + \dots + P_r</m> is any rank <m>k</m> divisor
+          then <m>|D - P_1 - \dots - P_r| \neq \varnothing</m> by definition.
+          It follows that <m>r(D - P_1) \ge r - 1</m> for any point <m>P_1</m> since
+          <m>P_2, \dots, P_r</m> are arbitrary.
+        </p>
+        <p>
+          Now suppose <m>E = P_1 + \dots + P_r</m> is the divisor that achieves the maximum.
+          Then <m>r(D - P_1) = r - 1</m> since otherwise we could do better than <m>E</m>.
+        </p>
+      </proof>
+    </theorem>
+
+    <p>
+      The proof of <xref ref="thm-rank-comparison"/> consists of showing the hypothesis
+      for <xref ref="thm-rank-properties"/> and applying induction.
+      We end with a proof of Baker's Lemma <xref ref="B"/>.
+    </p>
+
+    <theorem>
+      <title>Baker's Specialization Lemma</title>
+      <p>
+        We have <m>r_{G}(\rho(D)) \ge r_X(D)</m> for any divisor <m>D</m> on <m>X</m>.
+      </p>
+      <proof>
+        <p>
+          Let <m>\bar D = \rho(D)</m>. We will show by induction that if
+          <m>r_X(D) \ge r</m> then <m>r_G(\bar D) \ge r</m> as well.
+          The base case, <m>r = -1</m> is clear.
+        </p>
+        <p>
+          Suppose next <m>r = 0</m> and <m>r_X(D) \ge 0</m>.
+          Then <m>|D| \neq \varnothing</m> so there exists an effective divisor
+          <m>E \sim D</m>. Since <m>\rho</m> is a homomorphism, we have
+          <m>\bar D = \rho(D) \sim \rho(E) \ge 0</m>
+          and consequentially <m>r_G(\bar D) \ge 0</m>.
+        </p>
+        <p>
+          Now suppose <m>r \ge 1</m>. Let <m>\bar P \in V(G)</m> be any vertex.
+          Since <m>\rho</m> is surjective, we can find some <m>P \in X</m>
+          with <m>\rho(P) = \bar P</m>.
+          Now by <xref ref="thm-rank-properties"/>, <m>r_X(D - P) \ge r - 1</m>
+          and by induction <m>r_G(\bar D - \bar P) \ge r - 1</m>.
+          Since this holds for all <m>\bar P</m>, we conclude that <m>r_G(\bar D) \ge r</m>.
+        </p>
+      </proof>
+    </theorem>
 
   </subsection>
 

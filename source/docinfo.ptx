@@ -16,6 +16,7 @@
 <!-- it defines.                                                    -->
 <macros>
 \newcommand{\A}{\mathbf A}
+\newcommand{\C}{\mathbf C}
 \newcommand{\N}{\mathbf N}
 \renewcommand{\P}{\mathbf P}
 \newcommand{\Q}{\mathbf Q}
@@ -24,18 +25,22 @@
 
 \renewcommand{\O}{\mathcal O}
 \renewcommand{\L}{\mathscr L}
+\newcommand{\X}{\mathfrak X}
 
+\DeclareMathOperator{\CDiv}{CDiv}
 \DeclareMathOperator{\col}{col}
 \DeclareMathOperator{\Div}{Div}
 \DeclareMathOperator{\divisor}{div}
 \DeclareMathOperator{\Jac}{Jac}
 \DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Pic}{Pic}
 \DeclareMathOperator{\Prin}{Prin}
 \DeclareMathOperator{\Proj}{Proj}
 \DeclareMathOperator{\row}{row}
 \DeclareMathOperator{\rref}{rref}
 \DeclareMathOperator{\Spec}{Spec}
 \DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\val}{val}
 </macros>
 
 <!-- If you put any latex-image elements you can include preambles  -->

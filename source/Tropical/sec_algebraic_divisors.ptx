@@ -13,6 +13,7 @@
   </introduction>
 
   <subsection xml:id="ss-divisor-examples">
+    <title>Definitions and examples</title>
     <definition xml:id="def-weil-divisor">
       <p>
         A <em>divisor</em> on <m>X</m> is a finitely-supported, formal sum
@@ -295,6 +296,27 @@
         Conversely, every line bundle <m>\L</m> is isomorphic to <m>\L(D)</m> where the functions
         <m>f_i \in \O_X(U_i)</m> are the reciprocals of the image of <m>1 \in \L(U_i)</m>
         under the isomorphism <m>\L(U_i) \to \O_X(U_i)</m>.
+      </p>
+    </remark>
+
+    <remark>
+      <p>
+        The things which we have called "divisors" are just one type of divisor called
+        <em>Weil divisors</em>. A second type of divisor exists in the case where <m>X</m>
+        is not smooth and those are <em>Cartier divisors</em>.
+        A Cartier divisor is a Weil divisor which is locally principal.
+        As discussed in the last remark, these notions are equivalent on smooth curves.
+      </p>
+      <p>
+        For not-necessarily-smooth curves (and other varieties), the set of Cartier divisors
+        forms a subgroup <m>\CDiv(X)</m> of the divisor group and here we define
+        <m>\Pic(X) = \CDiv(X)/\Prin(X)</m> and <m>\Pic^0(X) = \CDiv^0(X)/\Prin(X)</m>.
+        This is called the <em>Picard</em> group.
+        It coincides with the Jacobian for smooth varieties.
+      </p>
+      <p>
+        A variety does not necessarily need to be smooth in order for every Weil divisor to be
+        Cartier.
       </p>
     </remark>
 

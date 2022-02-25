@@ -4,19 +4,23 @@
   <title>Divisors on tropical curves</title>
 
   <subsection xml:id="ss-tropical-curves">
+    <title>Definitions and examples</title>
     <definition>
       <p>
         A <em>metric graph</em> <m>\Gamma</m> is a graph in the combinatorial sense
+        (multiple edges and loops are allowed)
         but modelled as a metric space by giving each edge <m>e</m> a positive length
         <m>\ell(e) \in (0, \infty]</m>,
         possibly restricted to some subgroup like <m>\Q</m> or <m>\Z</m>.
         In this way, we make each edge isometric to the interval <m>[0,\ell(e)]</m>.
       </p>
       <p>
-        Moreover, the only vertices we consider are the ones that are topologically
-        defined. I.e. the ones of degree different from 2 since two edges meeting at a
-        single vertex can just be joined up and their lengths added. Lastly, only
-        leaf edges are allowed to be infinite and conversely, every leaf edge is required
+        Sometimes, we will ask that the only vertices we consider are the ones that are
+        required topologically. I.e. the ones of degree different from 2 since two edges
+        meeting at a single vertex can just be joined up and their lengths added.
+        Vertices of degree 2 will come and go as needed.
+        The last requirement is that only leaf edges are allowed to be infinite and conversely,
+        every leaf edge is required
         to be infinite.
       </p>
       <p>
@@ -26,10 +30,10 @@
 
     <figure xml:id="fig-metric-graph">
       <caption>Example of a metric graph (not drawn to any scale)</caption>
-      <image xml:id="tikz-metric-graph" width="75%">
+      <image xml:id="tikz-metric-graph" width="100%">
         <description>Metric graph consisting of two circles joined by a bridging edge</description>
         <latex-image>
-          \begin{tikzpicture}
+          \begin{tikzpicture}[scale=2]
             \draw (0,0) circle (1)
                   (4,0) circle (1)
                   (1,0) -- (3,0);
@@ -77,6 +81,7 @@
       <p>
         A function <m>f : \Gamma \to \R</m> is <em>piecewise linear</em>, if on each edge it is a
         continuous function that can be broken up into a finite set of linear functions.
+        By abuse of terminology, we will also call these <em>rational functions</em>.
       </p>
       <p>
         The divisor of such an <m>f</m> is supported at the points <m>p</m> at which <m>f</m>
@@ -94,5 +99,387 @@
         Like before, if <m>\Gamma</m> is compact, then every principal divisor has degree <m>0</m>.
       </p>
     </definition>
+
+    <example>
+      <p>
+        If <m>|\Gamma|</m> is at tree, then any divisor on <m>\Gamma</m> is principal.
+        Trees are the tropical analogue of <m>\A^1</m>.
+      </p>
+    </example>
+
+    <example>
+      <p>
+        If <m>\Gamma</m> is a circle, then the rational functions on <m>\Gamma</m> look something like
+        the following (absolute value of slopes indicated above)
+      </p>
+
+      <image xml:id="tikz-rational-function-on-circle" width="100%">
+        <description>Piecewise-linear function on a circle</description>
+        <latex-image>
+          \begin{tikzpicture}[scale=2]
+            \draw (0,0) -- (1,0) -- (2, 2) -- (3, 1) -- (4, 1) -- (6,0);
+            \draw (0,-0.5) -- (6,-0.5);
+            \foreach \x in {0,1,2,3,4,6}
+              \draw (\x,-0.6) -- (\x,-0.4);
+            
+            \draw (0,-0.6) node[below] {$a$}
+                  (1,-0.6) node[below] {$b$}
+                  (2,-0.6) node[below] {$c$}
+                  (3,-0.6) node[below] {$d$}
+                  (4,-0.6) node[below] {$e$}
+                  (6,-0.6) node[below] {$a$};
+          
+            \draw (0.5,0) node[above] {$0$}
+                  (1.5,1) node[above left] {$2$}
+                  (2.5,1.5) node[above] {$1$}
+                  (3.5,1) node[above] {$0$}
+                  (5,0.5) node[above] {$\tfrac12$};
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+
+      <p>
+        On a circle, the endpoints necessarily have the same <m>y</m>-coordinate.
+        The divisor associated to this piecewise-linear function is
+        <me>
+          (- \tfrac12 + 0)a + (0 - 2)b + (2 + 1)c + (-1 + 0)d + (0 + \tfrac12)e
+        </me>
+      </p>
+    </example>
+
+    <remark>
+      <title>Divisors on <m>G = |\Gamma|</m></title>
+      <p>
+        We also consider the simpler model of a multigraph (with no metric).
+        Here the divisors are supported only on the vertices of <m>G</m>
+        and the principal divisors are the image of the Laplacian operator
+        <m>\Delta : V(G) \to \Div(G)</m> given by
+      </p>
+      <me>
+        \Delta(v) = \sum_{w \sim v} (w - v) = \sum_{w \sim v} w - \val(v)
+      </me>
+      <p>
+        (val = valence since we already have defined a "degree").
+        It's not too important whether one takes <m>\Delta</m> or <m>-\Delta</m>.
+        This definition agrees with the intersection theory we do in the next section.
+      </p>
+    </remark>
+
+    <p>
+      Let's finish this section by elaboration on the difference between a <em>metric graph</em>
+      and a <em>tropical curve</em>.
+    </p>
+
+    <definition xml:id="def-tropical-curve">
+      <p>
+        An <em>abstract tropical curve</em> or simply "tropical curve" is a metric graph <m>\Gamma</m>
+        with non-negative weights at the vertices of <m>|\Gamma|</m>.
+        Here we will also allow some vertices of degree 2 but require these to have a positive weight.
+      </p>
+    </definition>
   </subsection>
+
+  <subsection xml:id="ss-classical-to-tropical-divisors">
+    <title>From algebraic curves to tropical curves</title>
+
+    <p>
+      Let us begin by explaining where tropical curves come from in the first place.
+      We will need the following notation going forward.
+    </p>
+
+    <dl>
+      <li>
+        <title>
+          <m>(K, v)</m>
+        </title>
+        <p>A field <m>K</m> with a non-trivial discrete valuation <m>v : R \to \Z</m></p>
+      </li>
+      <li>
+        <title>
+          <m>(\O_K, \mathfrak m_K)</m>
+        </title>
+        <p>The ring of integers and maximal ideal of <m>K</m></p>
+      </li>
+      <li>
+        <title>
+          <m>k</m>
+        </title>
+        <p>The residue field <m>k = \O_K/\mathfrak m_K</m> of <m>K</m></p>
+      </li>
+      <li>
+        <title>
+          <m>\X</m>
+        </title>
+        <p>A curve over <m>\O_K</m> (relative dimension 1 scheme)</p>
+      </li>
+      <li>
+        <title>
+          <m>X</m>
+        </title>
+        <p>The general fibre <m>\mathfrak X_0</m><mdash/>a curve over <m>K</m></p>
+      </li>
+      <li>
+        <title>
+          <m>\X_k</m>
+        </title>
+        <p>The special fibre<mdash/>a curve over <m>k</m></p>
+      </li>
+    </dl>
+
+    <p>
+      So here's the idea: we have some equation with coefficients in <m>\O_K</m> and that
+      gives us two curves<mdash/>taking that equation mod <m>\mathfrak m_K</m> and viewing
+      that equation in <m>K</m>.
+      This gives us a degeneration of the curve <m>X</m> to the curve <m>\X_k</m>
+    </p>
+
+    <example>
+      <title>An elliptic curve degenerating into a collection of rational curves</title>
+      <p>
+        Consider the integer equation
+        <me>
+          y^2 = x(x - 7)(x + 1).
+        </me>
+      </p>
+      <p>
+        This defines a smooth elliptic curve in <m>\C</m> and if we consider this
+        mod 7, we get a nodal cubic <m>y^2 = x^2(x + 1)</m>.
+        See <xref ref="fig-elliptic-degeneration"/> for a picture
+      </p>
+    </example>
+
+    <figure xml:id="fig-elliptic-degeneration">
+      <caption>An elliptic curve degenerating to a nodal cubic</caption>
+      <sidebyside widths="45% 45%" margins="auto" valign="middle">
+        <image xml:id="sageplot-elliptic-curve">
+          <description>The curve y^2 = x(x - 7)(x + 1)</description>
+          <sageplot>
+            var("x, y")
+            implicit_plot(y^2 == x * (x - 7) * (x + 1), xrange=(-2, 12), yrange=(-14, 14), aspect_ratio=0.5)
+          </sageplot>
+        </image>
+        <image xml:id="sageplot-degenerate-elliptic-curve">
+          <description>The curve y^2 = x^2(x + 1)</description>
+          <sageplot>
+            var("x, y")
+            implicit_plot(y^2 == x^2 * (x + 1), xrange=(-2,2), yrange=(-2,2))
+          </sageplot>
+        </image>
+      </sidebyside>
+    </figure>
+
+    <p>
+      We now explain how to generate a metric graph out of this.
+      To that end, we would like for <m>\X_k</m> to have several singularities
+      but only nodal singularities.
+    </p>
+
+    <p>
+      Let <m>V_1, \dots, V_k</m> be the irreducible components of <m>\X_k</m>.
+      Define a graph <m>G</m> with vertex set <m>v_1, \dots, v_k</m> and
+      connect <m>v_i</m> to <m>v_j</m> if <m>V_i</m> and <m>V_j</m> intersect.
+      We allow self-intersections and multiple intersections so <m>G</m>
+      is a multi-graph.
+    </p>
+
+    <p>
+      This gets us the underlying graph. To get the metric, we define the length of
+      an edge <m>v_i v_j</m> to be <m>n</m> if at that point of intersection,
+      the variety is described locally by <m>xy = f</m>
+      where <m>f \in K</m> has valuation <m>n</m>.
+      This could be non-integral.
+    </p>
+
+    <p>
+      In the example above, the metric graph would be a circle of length 1 since locally
+      the equation is <m>xy = 7^1</m>.
+    </p>
+
+    <p>
+      The weight of a vertex <m>v_i</m> is the genus of <m>v_i</m>.
+      We will not do much with these weights in this discussion other than to observe that
+      they dictate what sort of intersections we allow if we compare with
+      <xref ref="def-tropical-curve"/>.
+    </p>
+
+    <definition>
+      <p>
+        We call this metric curve defined above the <em>dual graph</em> of <m>\X_k</m>.
+      </p>
+      <p>
+        A curve <m>\X</m> with the given notation is said to be a <em>semistable model</em>
+        for <m>X</m> if if the dual graph of <m>\X_k</m> is a tropical curve (so an
+        example requirement is that there are only nodal intersections).
+      </p>
+    </definition>
+
+    <definition>
+      <p>
+        Given a point of <m>X</m> we can consider its Zariski closure in <m>\X</m>
+        and extending this process linearly, we have a way of taking a divisor on <m>X</m>
+        and getting a divisor on <m>\X</m>.
+      </p>
+      <p>
+        If <m>V_1, \dots, V_k</m> are the components of <m>\X_k</m> as before, then we have
+        an intersection pairing taking a divisor <m>\mathscr D</m> on <m>\X</m> to
+        <me>
+          \mathscr D \cdot V_i = \deg(\L(\mathscr D)|_{V_i}).
+        </me>
+      </p>
+      <p>
+        Putting this altogether we get a homomorphism <m>\rho : \Div(X) \to \Div(G)</m>
+        where
+        <me>
+          \rho(D) = \sum_{i = 1}^k (\mathscr D \cdot V_i) v_i.
+        </me>
+      </p>
+    </definition>
+
+    <p>
+      Another way to describe this map is to take a point <m>P \in X(K) = \X(\O_K)</m>
+      and then reduce mod <m>\mathfrak m_K</m> to get a point <m>p \in \X_k</m>.
+      That point <m>p</m> belongs to one of the components <m>V_1,\dots,V_k</m>
+      and that gives us a map from <m>X(K)</m> to the vertex set of <m>G</m>.
+    </p>
+
+    <remark>
+      <p>
+        Since the map <m>X(K) \to \X_k</m> is surjective, the map
+        <m>\rho : \Div(X) \to \Div(G)</m> is also surjective.
+      </p>
+    </remark>
+
+    <p>
+      Doing a bit of intersection theory, we see that for <m>i \neq j</m>
+      <me>V_i \cdot V_j = |V_i \cap V_j|</me>
+      is the number of places components <m>i</m> and <m>j</m> intersect.
+      Additionally, the self-intersection number is
+      <me>V_i \cdot V_i = - \val(v_i)</me>
+      where valence of a vertex is the number of neighbours.
+    </p>
+
+    <p>
+      We point the reader to <xref ref="L"/> (Chapter 9) for further explanation.
+      The takeaway here is that divisors supported on <m>\X_k</m>
+      always map to principal divisors in <m>G</m>.
+    </p>
+
+    <remark>
+      <p>
+        Now it's not true that elements of <m>\Prin(X)</m> remain principal in <m>\X</m>.
+        However, as we have seen just above, the part of <m>\divisor(f)</m> which is
+        supported on <m>\X_k</m> specializes to a principal divisor on <m>G</m>.
+      </p>
+      <p>
+        So if we start with a divisor <m>\divisor(f)</m> on <m>X</m> and take the closure
+        in <m>\X</m>, the result differs from a principal divisor on <m>\X</m> by a divisor
+        supported in <m>\X_k</m>.
+      </p>
+      <p>
+        Now two facts are true: first if <m>\mathscr D</m> is a principal divisor on <m>\X</m>
+        then <m>\O(\mathscr D) \cong \O</m> so <m>\rho(\mathscr D) = 0</m> by definition.
+        Second, if <m>D \in \Prin(X)</m> then <m>\rho(D)</m> differs from <m>\rho(\mathscr D) = 0</m>
+        by <m>\rho(\mathscr D|_{\X_k}) \in \Prin(G)</m>.
+      </p>
+    </remark>
+
+    <p>
+      Let's summarize what we have so far.
+    </p>
+
+    <theorem>
+      <title>Specialization of divisors to graphs</title>
+      <p>
+        With the notation as before, there is a well defined map
+        <me>\rho : \Div(X) \to \Div(G)</me>
+        taking principal divisors to principal divisors.
+      </p>
+    </theorem>
+
+    <remark>
+      <p>
+        There are three problems with all of this.
+      </p>
+      <ol>
+        <li>We started with metric graphs but this whole last section was about non-metric graphs</li>
+        <li>We have restricted ourselves to DVRs</li>
+        <li>This construction is not functorial with respect to base change (next example)</li>
+      </ol>
+      <p>
+        All of this is fixed by looking at Berkovich spaces.
+      </p>
+    </remark>
+
+    <example>
+      <p>
+        Let <m>K = \C((t))</m> and <m>\X</m> be the projective curve defined by <m>xy = tz^2</m>.
+        This is a smooth conic which degenerates to the pair of lines <m>V : x = 0</m> and <m>W : y = 0</m>.
+        So the dual graph consists of a single edge <m>v \sim w</m>.
+      </p>
+      <p>
+        Let <m>D = P + Q</m> with
+        <me>
+          P = (\sqrt t : \sqrt t : 1) \text{ and } Q = (-\sqrt t : - \sqrt t : 1).
+        </me>
+        Then as <m>t \to \infty</m>, both <m>P</m> and <m>Q</m> converge to the node <m>(0:0:1)</m>.
+      </p>
+      <p>
+        If we look at the solutions to <m>x = y</m> in <m>\X</m> these are exactly <m>P + Q</m>
+        and we also have a couple of poles at infinity <m>(1:0:0) + (0:1:0)</m>.
+        Or in other words,
+        <me>
+          P + Q - (1:0:0) - (0:1:0) = \div(x - y)
+        </me>
+        So <m>P + Q \sim (1:0:0) + (0:1:0)</m> and consequentially <m>\rho(P + Q) = v + w</m>.
+      </p>
+
+      <p>
+        On the other hand, if we base change to <m>\C((t^{\frac12}))</m> then we have
+        to blow up at <m>x = y = 0</m> to regularize and this adds a new component <m>U</m>
+        to <m>\X'_k</m> sitting exactly halfway between <m>v</m> and <m>w</m>.
+        Now <m>\rho(P + Q) = 2u</m>, and while this is linearly equivalent to <m>v + w</m>,
+        the map <m>\rho</m> has changed on the level of <m>\Div(X)</m>.
+      </p>
+
+      <p>
+        Note that <m>x - y</m> vanishes along this exceptional divisor and both <m>P</m>
+        and <m>Q</m> degenerate to <m>U</m>.
+      </p>
+
+      <image xml:id="tikz-base-change-not-functorial" width="100%">
+        <description>Blow-up of <m>\X_k</m></description>
+        <latex-image>
+          \begin{tikzpicture}[scale=2]
+            \draw (0,0) -- (1,1) node[above] {$y = 0$}
+                  (0,1) -- (1,0) node[below] {$x = 0$};
+
+            \draw (4,0) -- (5,1) node[above] {$y = 0$}
+                  (2,1) -- (3,0) node[below] {$x = 0$}
+                  (2,0.5) -- (5,0.5) node[right] {$U$};
+
+            \draw (0,-1) node[below] {$1$} node[left] {$\rho_K(P + Q)$} -- (1,-1) node[below] {$1$};
+            \draw (3,-1) node[left] {$\rho_{K'}(P + Q)$} -- (4,-1) node[below] {$2$} -- (5,-1);
+
+            \foreach \x in {0, 1, 3, 4, 5}
+              \filldraw (\x,-1) circle (0.02);
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </example>
+
+  </subsection>
+
+  <references>
+    <title>References</title>
+    <biblio type="raw" xml:id="B">
+      Matthew Baker.
+      <title>Specialization of linear systems from curves to graphs</title>.
+      Algebra Number Theory 2 (6) 613 - 653, 2008. <url href="https://doi.org/10.2140/ant.2008.2.613"/>
+    </biblio>
+    <biblio type="raw" xml:id="L">
+      Qing Liu.
+      <title>Algebraic Geometry and Arithmetic Curves</title>.
+      Oxford Graduate Texts in Mathematics (Book 6). Oxford University Press, 2006.
+    </biblio>
+  </references>
 </section>

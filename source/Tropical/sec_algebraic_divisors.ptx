@@ -148,7 +148,7 @@
         is the sheaf <m>\L(D)</m> where for any open set <m>U</m> of <m>X</m>,
       </p>
       <me>
-        \L(D)(U) = \{f \in \O_X(U) : \divisor(f) + D \ge 0\}.
+        \L(D)(U) = \{f \in k(X) : \divisor(f)|_U + D \ge 0\}.
       </me>
     </definition>
 

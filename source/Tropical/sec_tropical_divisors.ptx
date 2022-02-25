@@ -440,7 +440,7 @@
         and we also have a couple of poles at infinity <m>(1:0:0) + (0:1:0)</m>.
         Or in other words,
         <me>
-          P + Q - (1:0:0) - (0:1:0) = \div(x - y)
+          P + Q - (1:0:0) - (0:1:0) = \divisor(x - y)
         </me>
         So <m>P + Q \sim (1:0:0) + (0:1:0)</m> and consequentially <m>\rho(P + Q) = v + w</m>.
       </p>

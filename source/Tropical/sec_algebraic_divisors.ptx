@@ -320,9 +320,37 @@
       </p>
     </remark>
 
+    <theorem xml:id="thm-dimension-property-linear-systems">
+      <title>Dimension properties of linear systems</title>
+      <p>
+        Define <m>\ell(D) = \dim \L(D)</m>. If <m>\ell(D) > 0</m> then
+        for any point <m>P</m>, <m>\ell(D - P) \ge \ell(D) - 1</m>
+        and there exists a point <m>P</m> for which <m>\ell(D - P) = \ell(D) - 1</m>.
+      </p>
+      <proof>
+        <p>
+          Consider the exact sequence
+          <me>0 \to \L(D - P) \to \L(D) \to k(P) \to 0.</me>
+          Taking global sections gives
+          <me>0 \to \Gamma(X, \L(D - P)) \to \Gamma(X, \L(D)) \to k</me>
+          so we see that <m>\ell(D - P)</m> is either <m>\ell(D)</m> or
+          <m>\ell(D) - 1</m>.
+        </p>
+        <p>
+          Now suppose <m>P</m> is not a base point of <m>\L(D)</m>
+          which exists since a global section <m>s \neq 0</m> can only have finitely many
+          zeroes.
+          Then with this same <m>s</m>, we have <m>s \notin \Gamma(X,\L(D - P))</m>
+          since <m>s</m> does not have a zero at <m>P</m>.
+          So <m>\Gamma(X,\L(D - P))</m> is a proper subspace of <m>\Gamma(X,\L(D))</m>
+          which finishes the proof.
+        </p>
+      </proof>
+    </theorem>
+
   </subsection>
 
-    <references>
+  <references>
     <title>References</title>
     <biblio type="raw" xml:id="H">
       Robin Hartshorne.

@@ -4,8 +4,5 @@ output
 # assets generated from source
 generated-assets
 
-# error logs
-.error_schema.log
-error_schema.log
-.error_syntax.log
-error_syntax.log
+# logs
+*.log

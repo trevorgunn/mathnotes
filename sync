@@ -1,6 +1,6 @@
 #!/bin/sh
 
-pretext build --clean -d
+pretext build --clean
 rsync -a --delete --exclude ".git" "/home/trevor/Documents/Github/mathnotes/output/html/" "/home/trevor/Documents/Github/github.io/notes"
 
 pushd "/home/trevor/Documents/Github/github.io"
